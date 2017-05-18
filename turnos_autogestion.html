@@ -1,0 +1,278 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<link href="boostrap/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+		<style>
+			.alert{
+				margin: 7px;
+			}
+			.table_container{
+				margin: 7px;
+			}
+			#divHorarios, #divHorariosDisponibles{
+				margin: 7px;
+			}
+			.error{
+				border: 1px solid red;
+			}
+			.th_esp{
+				padding-top: 20px;
+			}
+			
+			.table_turdis {
+				font-size: 14px;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+			
+			.th_turdis, .td_turdis {
+			    text-align: center;
+			    padding: 8px;
+			}
+			
+			.tr_turdis:nth-child(even){background-color: #f2f2f2}
+			
+			.th_turdis {
+			    background-color: #4CAF50;
+			    color: white;
+			}
+			
+			@media screen and (max-width: 768px){
+				.th_esp{
+					display: none;
+				}
+			}
+			
+		</style>	
+	</head>		
+	<body>
+		<header>
+			<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Desplegar / Ocultar Menu</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">Principal Plan</a>
+			    </div>
+			
+			    <!-- Inicia menu -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">				        
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			            <li><a id="cerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Cerrar Sesion</a></li>				            
+			          </ul>
+			        </li>
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+			</nav>
+		</header>
+		<div class="row">
+			<div class="container-fluid">						
+				<div style="text-align: left; background-color: #616161; color: #fff; font-size: 16px;" class="alert alert-info " role="alert">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-md-6">
+							<strong>Paciente : </strong> <span id="dtos_paciente"></span><br>
+				  			<strong>Obra Social : </strong> <span id="dtos_os"></span><br>
+				  			<strong>Estado : </strong> <span id="dtos_estado"></span><br>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-md-6">
+							<strong>Sexo : </strong> <span id="dtos_sexo"></span><br>
+				  			<strong>Fecha nacimiento : </strong> <span id="dtos_fn"></span><br>
+				  			<strong>Dni : </strong> <span id="dtos_nd"></span><br>
+						</div>		
+					</div>
+				</div>				
+				<br>
+				<div class="table_container">
+					<table class="table table-responsive">						
+						<tr>
+							<th class="th_esp" style="padding: 20px;">
+								Especialidades
+							</th>
+							<td>	
+								<select id="filtro_especialidad" name="filtro_especialidad" class="form-control input-lg"  ></select>
+							</td>
+						</tr>
+						<tr>
+							<th class="th_esp" style="padding: 20px;">
+								Oficinas
+							</th>
+							<td>
+								<select id="filtro_oficina" name="filtro_oficina" class="form-control input-lg "  ></select>
+							</td>
+						</tr>
+						<tr>
+							<th class="th_esp" style="padding: 20px;">
+								Profesionales
+							</th>
+							<td>
+								<select id="filtro_profesional" name="filtro_profesional" class="form-control input-lg "  required></select>		
+							</td>
+						</tr>
+					</table>
+				</div>
+				<br>				
+				<button id="btnVerHorarios" class="btn btn-primary center-block btn-lg"><i class="fa fa-search" aria-hidden="true"></i>&nbsp; Buscar Disponibilidad</button>
+				<br>			
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6 col-md-6" style="padding-right: 0px; padding-left: 0px;">
+							<div id="divHorarios"></div>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-md-6" style="padding-right: 0px; padding-left: 0px;">
+							<div id="divHorariosDisponibles"></div>
+						</div>
+					</div>
+				</div>
+				<br>	
+			</div>
+		</div>
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="boostrap/bootstrap.min.js"></script>
+		<script>		
+			$(document).ready(function(){
+				
+				$("#dto_paciente").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
+				$("#dtos_paciente").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>"); 				
+				$("#dtos_os").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
+				$("#dtos_estado").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
+				$("#dtos_sexo").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
+				$("#dtos_fn").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
+				$("#dtos_nd").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
+				
+				var dni = localStorage.getItem("dni");
+				var email = localStorage.getItem("email");
+				
+				$.getJSON('http://54.225.110.0/php-bin/ws/ajax_turnos.php',
+			   				{ accion: "dtos_afiliado", dni: dni },						       				
+			   				function(data){ 
+			   					
+			   					localStorage.setItem("nombre_paciente", data[0]['ayn']);
+			   					localStorage.setItem("paciente", data[0]['id_paciente']);
+			   					
+			   					$("#dto_paciente").html(data[0]['ayn']);
+			   					$("#dtos_paciente").html(data[0]['ayn']);
+			   					$("#dtos_os").html(data[0]['obrasocial']);
+			   					$("#dtos_estado").html(data[0]['estado_dia']);
+			   					$("#dtos_sexo").html(data[0]['sexo']);
+			   					$("#dtos_fn").html(data[0]['fn']);
+			   					$("#dtos_nd").html(data[0]['nd']);
+			   					
+			   				}
+			   	
+			   	); 
+				
+				$("#filtro_especialidad").html("Cargando ...");
+				
+				$.get("http://54.225.110.0/php-bin/ws/ajax_turnos.php?accion=select_especialidades" , function (data) {
+					
+					$("#filtro_especialidad").html(data);
+					var id_especialidad = $("#filtro_especialidad option:selected").val();
+					
+					$.get("http://54.225.110.0/php-bin/ws/ajax_turnos.php?especialidad=" + id_especialidad + "&accion=select_oficinas" , function (data) {
+						$("#filtro_oficina").html(data);
+						
+						var id_oficina = $("#filtro_oficina option:selected").val();					
+					
+						$.get("http://54.225.110.0/php-bin/ws/ajax_turnos.php?oficina=" + id_oficina + "&accion=select_profesionales&especialidad=" + id_especialidad, function (data) {
+							$("#filtro_profesional").html(data);
+						});
+					});
+					
+					
+					
+					
+				});
+								
+				$("#filtro_especialidad").on("change", function () {
+					
+					$("#filtro_oficina").html('');
+					$("#filtro_profesional").html('');
+					
+					$.get("http://54.225.110.0/php-bin/ws/ajax_turnos.php?especialidad=" + $(this).val() + "&accion=select_oficinas" , function (data) {
+						$("#filtro_oficina").html(data);						
+					});
+					
+					$("#filtro_oficina").focus();
+				});	
+					
+				$("#filtro_oficina").on("blur change", function () {	
+					
+					$("#filtro_profesional").html('<option><i class="fa fa-spinner" aria-hidden="true"></i></option>');
+					var especialidad = $('#filtro_especialidad').val();
+					
+					$.get("http://54.225.110.0/php-bin/ws/ajax_turnos.php?oficina=" + $(this).val() + "&accion=select_profesionales&especialidad=" + especialidad, function (data) {
+						
+						$("#filtro_profesional").html(data);
+						//$("#divHorarios").html(data);
+						
+					});
+					
+					$("#filtro_profesional").focus();					
+				});
+				
+				$("#btnVerHorarios").click(function(){
+					
+					var paciente = localStorage.getItem("paciente");
+					var numdoc = localStorage.getItem("dni");
+					var filtro_especialidad = $('#filtro_especialidad').val();
+					var filtro_oficina = $('#filtro_oficina').val();
+					var filtro_profesional = $('#filtro_profesional').val();
+					var email = localStorage.getItem('email');
+					
+					if(filtro_profesional==null){
+						$('#filtro_profesional').addClass("error");
+						setTimeout(function(){ $('#filtro_profesional').removeClass("error"); }, 3000);
+					}else{
+						
+						$('#btnVerHorarios').attr('disabled','disabled');
+						$("#divHorarios").html("<center><h3><i class='fa fa-spinner fa-pulse fa-3x fa-fw' ></i> &nbsp; <h2>Cargando...</h2></h3></center>");
+						$("#divHorariosDisponibles").html("");
+						
+						$.get("http://54.225.110.0/php-bin/ws/ajax_turnos.php?accion=verHorarios&paciente="+paciente+"&filtro_especialidad="+filtro_especialidad+"&filtro_oficina="+filtro_oficina+"&filtro_profesional="+filtro_profesional+"&numdoc="+numdoc+filtro_profesional+"&email="+email, function (data) {
+							
+							$("#divHorarios").html(data);
+							$('#btnVerHorarios').removeAttr('disabled');
+						});
+						
+						
+						
+					}
+					
+					
+					
+				})
+				
+				$('#cerrarSesion').click(function(){
+					
+					var datos = {"accion": "cerrar_sesion"}
+					
+					$.ajax({
+						url: "http://54.225.110.0/php-bin/ws/ajax_turnos.php",
+						data: datos,							
+						type:"GET",   	
+						success: function(data){
+							localStorage.removeItem("dni");
+							localStorage.removeItem("nombre_paciente");
+							localStorage.removeItem("paciente");
+							window.location.href = "index.html";
+						}
+					});	
+				})
+				
+			});		
+		</script>
+	</body>
+</html>

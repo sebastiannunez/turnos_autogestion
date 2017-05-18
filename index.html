@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
+		<link href="boostrap/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/js_login.js"></script>
+		<style>
+			.error{				
+				border: 2px solid #FF5722;
+			}
+		</style>				
+	</head>
+	<body>
+		 <div class="container">
+		 	<center>
+		 		<img src="logoPP_300x50px.png" style="margin-top: 20px;"/>
+		 	</center>
+		 	<div class="row">    
+		        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+		            <div class="panel panel-success" >
+		                    <div class="panel-heading">
+		                        <div class="panel-title">Principal Plan - Solicitud de turnos</div>	                        
+		                    </div>     
+		
+		                    <div style="padding-top:30px" class="panel-body" >
+		
+		                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+		                            
+		                        <form id="loginform" class="form-horizontal" role="form">
+		                                    
+		                            <div style="margin-bottom: 25px" class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                        <input id="login-dni" type="text" class="form-control" name="username" value="" placeholder="documento">                                        
+                                    </div>
+		                            
+		                            <div style="margin-bottom: 25px;" class="input-group">
+			                            <span class="input-group-addon"><i class="fa fa-at" aria-hidden="true"></i></span>
+			                            <input id="login-email" type="email" class="form-control" name="email" placeholder="email">
+			                        </div>
+		                                
+		                            <div style="margin-bottom: 25px; display: none;" class="input-group">
+		                                        <span class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+		                                        <input id="login-password" type="password" class="form-control" name="clave" placeholder="clave">
+		                                    </div>
+									<div id="divError" style="display: none; background-color: red; color: white; border-radius: 5px; padding: 5px;">
+										&nbsp; Usted no es afiliado de principal plan
+									</div>
+		                                <div style="margin-top:10px" class="form-group">
+		                                    <!-- Button -->
+		
+		                                    <div class="col-sm-12 controls">
+		                                      <a id="btnLogin" class="btn btn-success btnLogin"><i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp; Ingresar  </a>	                                      
+		                                      <a id="btnRegistrarme" style="display: none;" class="btn btn-primary btnRegistrarme"><i class="fa fa-address-card" aria-hidden="true"></i> &nbsp; Registrarme  </a>
+		                                      <!-- <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
+		
+		                                    </div>
+		                                </div>	
+		
+		                                <div class="form-group">
+		                                    <div class="col-md-12 control">
+		                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+		                                            Creado por SMADM - 25/04/2017 - © Copyright
+		                                        </div>
+		                                    </div>
+		                                </div>    
+		                            </form>
+		                        </div>                     
+		                    </div>  
+		        </div>
+	        </div>
+	        <div class="row">
+	        	<div id="divRegistrar" style="margin-top: 40px; display: none;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	        		<br>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            Registro por unica vez 
+                        </div>
+                        <div class="panel-body">
+                            <div style="margin-bottom: 25px; margin-top: 15px;" class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                <input id="register-dni" type="text" class="form-control" name="username" value="" placeholder="documento">                                        
+                            </div>
+                            <div style="margin-bottom: 25px;" class="input-group">
+	                            <span class="input-group-addon"><i class="fa fa-at" aria-hidden="true"></i></span>
+	                            <input id="register-email" type="email" class="form-control" name="email" placeholder="email">
+	                        </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a id="btnRegistrar" class="btn btn-info btnRegistrar"><i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp; Registrar  </a>	                                      
+		                    <a id="btnCancelar" class="btn btn-danger btnCancelar"><i class="fa fa-ban" aria-hidden="true"></i> &nbsp; Cancelar  </a>
+                        </div>
+                        <div id="divErrorRegistro" style="display: none; background-color: red; color: white; border-radius: 5px; padding: 5px;">
+							&nbsp; Usted ya esta registrado
+						</div>
+                    </div>
+                </div>
+	        </div>	       
+	    	
+	    </div>
+		<script src="boostrap/bootstrap.min.js"></script>			
+	</body>
+</html>
