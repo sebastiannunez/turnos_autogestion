@@ -16,7 +16,7 @@
 	<body>
 		 <div class="container">
 		 	<center>
-		 		<img src="logoPP_300x50px.png" style="margin-top: 20px;"/>
+		 		<img src="image/logoPP_300x50px.png" style="margin-top: 20px;"/>
 		 	</center>
 		 	<div class="row">    
 		        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
@@ -33,7 +33,7 @@
 		                                    
 		                            <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                        <input id="login-dni" type="text" class="form-control" name="username" value="" placeholder="documento">                                        
+                                        <input id="login-dni" type="text" class="form-control" name="username" value="" placeholder="documento" autofocus>                                        
                                     </div>
 		                            
 		                            <div style="margin-bottom: 25px;" class="input-group">
@@ -98,8 +98,16 @@
                     </div>
                 </div>
 	        </div>	       
-	    	
+	    	<br>
+	    	<div class="row">	    
+	    		<center>		
+	    		<div id="fiscalizador" class=" " style="display: none; background-color: red; color: white; border-radius: 7px; margin: 0px 15px; padding: 10px; max-width: 555px;">
+	    			<h4 style="text-align: left;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Su empresa presenta una deuda <br> &nbsp; &nbsp; por tal motivo no podemos brindarle prestaciones</h4>	
+	    		</div>
+	    		</center>
+	    	</div>
 	    </div>
-		<script src="boostrap/bootstrap.min.js"></script>			
+		<script src="boostrap/bootstrap.min.js"></script>	
+		<script src="js/headroom.min.js"></script>		
 	</body>
 </html>

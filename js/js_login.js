@@ -42,11 +42,35 @@ $(document).ready(function(){
 							       					
 						if(data=="ok"){
 							
-							localStorage.setItem("dni", dni);
-							localStorage.setItem("email", email);								
-							window.location.href = 'turnos_autogestion.html' ;
+							$.getJSON('http://54.225.110.0/php-bin/ws/ws_padron_cuil_fisca.php',
+						   				{ parametro: "fiscaliza_afiliado",
+						   					origen: "app_turnos", 
+						   					nd: dni
+						   				},						       				
+						   				function(data){ 
+											
+											var atiende = data[0]['atender'] ;					
+											
+											if(atiende!='SI'){
+												
+												$('#fiscalizador').css('display','inline-block');
+												false;
+												
+											}else{
+												
+												
+												localStorage.setItem("dni", dni);
+												localStorage.setItem("email", email);								
+												window.location.href = 'turnos_autogestion.html' ;
+												
+											}   					
+						   				}
+						   	
+						   	); 
+							
+							
 						}else{
-							alert(data);
+							//alert(data);
 							$('#divError').css('display','inline-block');
 							setTimeout(function(){ 
 								$('#divError').css('display','none');
@@ -55,6 +79,10 @@ $(document).ready(function(){
 						
 					}
 				});	
+				
+				
+				
+				
 				
 			}
 			

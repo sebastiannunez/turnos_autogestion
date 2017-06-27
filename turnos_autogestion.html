@@ -5,6 +5,7 @@
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<link href="boostrap/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="css/btn-3d.css"> 
 		<style>
 			.alert{
 				margin: 7px;
@@ -60,24 +61,25 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="#">Principal Plan</a>
+			      <a class="navbar-brand" href="#">Principal Plan</a>			      
 			    </div>
 			
 			    <!-- Inicia menu -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <ul class="nav navbar-nav navbar-right">				        
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil <span class="caret"></span></a>
+			      <ul class="nav navbar-nav navbar-right">			      					        
+			        <li class="dropdown">			          	
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a id="cerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Cerrar Sesion</a></li>				            
-			          </ul>
+			          	<li><a id="dtos_contacto"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp; Datos de contacto</a></li>			          	
+			            <li><a id="cerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Cerrar Sesion</a></li>			            		 		            
+			          </ul>			          
 			        </li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
 		</header>
-		<div class="row">
+		<div id="divMain" class="row">
 			<div class="container-fluid">						
 				<div style="text-align: left; background-color: #616161; color: #fff; font-size: 16px;" class="alert alert-info " role="alert">
 					<div class="row">
@@ -92,21 +94,25 @@
 				  			<strong>Dni : </strong> <span id="dtos_nd"></span><br>
 						</div>		
 					</div>
-				</div>				
+				</div>
 				<br>
 				<div class="table_container">
+					<div id="divRealizarBusqueda" style="background-color: #eeba37; color: #fff; padding: 7px; font-weight: bold; border-radius: 5px;">
+						Realizar búsqueda <br> Especialidad -> Localidad -> Profesional
+					</div>
+					<br>
 					<table class="table table-responsive">						
 						<tr>
 							<th class="th_esp" style="padding: 20px;">
 								Especialidades
 							</th>
 							<td>	
-								<select id="filtro_especialidad" name="filtro_especialidad" class="form-control input-lg"  ></select>
+								<select id="filtro_especialidad" name="filtro_especialidad" class="form-control input-lg" style="background-color: #eeba37; color: white;" ></select>
 							</td>
 						</tr>
 						<tr>
 							<th class="th_esp" style="padding: 20px;">
-								Oficinas
+								Localidad
 							</th>
 							<td>
 								<select id="filtro_oficina" name="filtro_oficina" class="form-control input-lg "  ></select>
@@ -138,11 +144,80 @@
 				<br>	
 			</div>
 		</div>
-		
+		<div id="divContacto" class="row" style="display: none;">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 divContainer">
+					<div class="opening_hours" style="background-color:#eeba37; color: white; margin: 30px; padding: 10px; height: 280px; border-radius: 5px;">
+			            <h3>Horarios</h3>
+			            <div class="opening_hours_wrapper">
+			                <p>
+			                    Los horarios de atención administrativa son los días;.
+			                </p>
+			                <ul>
+			                    <li>
+			                        <label>Lunes a Viernes</label>
+			                        <span>8<sup>00</sup> - 17<sup></sup></span>
+			                    </li>
+			                    <li>
+			                        <label>Sabados</label><span>8<sup>00</sup> - 15<sup>00</sup></span>
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 divContainer">
+					<div class="get_in_touch" style="background-color:#007d5a; color: white; margin: 30px; padding: 10px; height: 280px; border-radius: 5px;">
+	                    <h3>Contáctenos</h3>
+	                    <div class="get_in_touch_wrapper">
+	                        <ul>
+	                            <li class="address">
+	                                <i class="fa fa-map-marker" aria-hidden="true"></i></span><span class="address_wrapper"><strong>Principal Plan</strong> &nbps;
+											<br>
+											Domingo F. Sarmiento 1705
+											<br>
+											San Miguel, Prov. de Buenos Aires<br>
+											República Argentina.</span>
+	                            </li>
+	                            <li class="phone">
+	                                <i class="fa fa-phone-square" aria-hidden="true"></i> &nbps;
+	                                <p>
+	                                    0810-999-7526
+	                                </p>
+	                            </li>
+	                            <li class="mail">
+	                                <span class="icon"><i class="icon-mail"></i></span>
+	                                <p>
+	                                    info@principalplan.com.ar
+	                                </p>
+	                            </li>
+	                            <li class="www">
+	                                <span class="icon"><i class="icon-link"></i></span> &nbps;
+	                                <p>
+	                                    <a target="_blank" href="http:principalplan.com.ar" style="color: white;">www.principalplan.com.ar</a>
+	                                </p>
+	                            </li>
+	                            <li class="www">
+	                                <i class="fa fa-whatsapp" aria-hidden="true"></i>&nbps;
+	                                <p>
+	                                    <a target="_blank" href="http:principalplan.com.ar" style="color: white;">11 3331-2345</a>
+	                                </p>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                </div>
+				</div>	
+	        </div>
+	        <div class="row divContainer" style="margin: 30px;">
+	        	<a id='btnVolverTurnos' class='btn btn-primary'>Volver a seleccion de turnos</a>
+	        </div>
+		</div>
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="boostrap/bootstrap.min.js"></script>
 		<script>		
 			$(document).ready(function(){
+				
+				$('#filtro_especialidad').fadeIn(500).delay(250).fadeOut(500).fadeIn(500).delay(250).fadeOut(500).fadeIn(500).delay(250).fadeOut(500).fadeIn(500).css('background-color','#fff').css('color','black');			
+				$('#divRealizarBusqueda').fadeIn(500).delay(250).fadeOut(500).fadeIn(500).delay(250).fadeOut(500).fadeIn(500).delay(250).fadeOut(500).fadeIn(500);
 				
 				$("#dto_paciente").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>");
 				$("#dtos_paciente").html("&nbsp;&nbsp;&nbsp;<i class='fa fa-spinner fa-pulse fa-x fa-fw'></i>"); 				
@@ -205,10 +280,16 @@
 						$("#filtro_oficina").html(data);						
 					});
 					
+										
 					$("#filtro_oficina").focus();
+					
+					setTimeout(function(){ $("#filtro_profesional").focus(); $("#filtro_oficina").focus(); }, 1000);
+					
+					
+					
 				});	
 					
-				$("#filtro_oficina").on("blur change", function () {	
+				$("#filtro_oficina").on("change blur", function () {	
 					
 					$("#filtro_profesional").html('<option><i class="fa fa-spinner" aria-hidden="true"></i></option>');
 					var especialidad = $('#filtro_especialidad').val();
@@ -245,6 +326,13 @@
 							
 							$("#divHorarios").html(data);
 							$('#btnVerHorarios').removeAttr('disabled');
+							
+							//obtenemos la posición en la que se encuentra el botón
+							var posicion_boton = $('#divHorarios').offset().top;
+							                         
+							//hacemos scroll hasta el botón
+							$("html, body").animate({scrollTop:posicion_boton+"px"});
+							
 						});
 						
 						
@@ -254,6 +342,19 @@
 					
 					
 				})
+				
+				$('#dtos_contacto').on('click',function(){
+					
+					$('#divMain').css('display','none');
+					$('#divContacto').css('display','inline-block');
+					
+				}); 
+				
+				$('#btnVolverTurnos').on('click',function(){
+					
+					window.location.reload();
+					
+				});
 				
 				$('#cerrarSesion').click(function(){
 					
@@ -274,5 +375,6 @@
 				
 			});		
 		</script>
+		<script src="js/headroom.min.js"></script>		
 	</body>
 </html>

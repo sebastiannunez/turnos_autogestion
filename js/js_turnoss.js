@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	$('.verHorDis').click(function(){
+	$('.verHorDis').click(function(){	
 		
 		var filas = $("#tab_dias_horarios tr").length;
 		
@@ -20,6 +20,12 @@ $(document).ready(function(){
 	   				function (data) {
 	   					
 						$('#divHorariosDisponibles').html(data);
+						
+						//obtenemos la posición en la que se encuentra el botón
+						var posicion_boton = $('#btnVerHorarios').offset().top;
+						                         
+						//hacemos scroll hasta el botón
+						$("html, body").animate({scrollTop:posicion_boton+"px"});
 					}
 		);	
 		
